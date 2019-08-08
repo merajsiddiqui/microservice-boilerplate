@@ -28,8 +28,13 @@ class Config {
         if (configurations[i].indexOf("[") === 0) {
           service = configurations[i].replace(/\[/g, "").replace(/]/g, "")
         } else {
-          const [setting, value] = configurations[i].split("=")
-          loadedConfig[service][setting] = value
+          if (configurations[i].length !== 0) {
+            const [setting, value] = configurations[i].split("=")
+            if (loadedConfig[service] === undefined) {
+              loadedConfig[service] = {}
+            }
+            loadedConfig[service][setting.trim()] = value.trim()
+          }
         }
       }
     }

@@ -45,7 +45,7 @@
       "no-boolean-literal-compare": false,
       "no-conditional-assignment": true,
       "no-consecutive-blank-lines": [true],
-      "no-console": [true, "debug", "info", "log", "time", "timeEnd", "trace"],
+      "no-console": [false, "debug", "info", "log", "time", "timeEnd", "trace"],
       "no-construct": true,
       "no-debugger": true,
       "no-default-export": true,

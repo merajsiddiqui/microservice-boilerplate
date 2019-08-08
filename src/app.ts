@@ -12,19 +12,21 @@ let config: any
 const microServiceLoader = async () => {
   config = await Config.loadConfigurations(configurationFilePath)
   Plugins.loadPlugins()
+  const app = express()
+  app.get("/", (req, res) => {
+    res.send({
+      data: config
+    })
+  })
+  app.listen(config.app.port, () => {
+    console.log(
+      ` Service Started at port 127.0.0.1:${config.app.port} in ${config.app.environment} mode`
+    )
+  })
 }
 microServiceLoader()
-const app = express()
 
 // app.use(bodyParser.urlencoded({ extended: true }))
 // app.use(bodyParser.json())
 // app.use(methodOverride())
 // RegisterRoutes(app)
-
-app.get("/", (req, res) => {
-  res.send({
-    data: config
-  })
-})
-
-app.listen(3000)
