@@ -1,0 +1,55 @@
+{
+  "name": "microservice-boilerplate",
+  "version": "1.0.0",
+  "description": "Simple microservice boiler plate with Node.JS & Typescript",
+  "main": "./dist/main.js",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "ts-node": "ts-node",
+    "tslint": "tslint --project ./",
+    "tsc": "tsc --project ./tsconfig.json",
+    "prettier-all": "prettier --write 'src/**/*.+(ts|tsx|js|css|json)'",
+    "precompile": "npm run prettier-all && npm run tslint && npm run clean",
+    "compile": "npm run tsc",
+    "pretest": "npm run compile",
+    "test": "nyc mocha --require source-map-support/register --recursive dist/**/*.spec.js",
+    "build": "npm run test",
+    "postbuild": "rimraf  dist/**/spec dist/**/*.spec.js",
+    "debug": "cross-var node --inspect-brk=0.0.0.0:${DEBUG_PORT} --require source-map-support/register ./dist/main.js",
+    "start": "node ./dist/main.js",
+    "profile": "node --prof ./dist/main.js"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "semi": false
+  },
+  "license": "UNLICENSED",
+  "author": "Meraj Ahmad Siddiqui <merajsiddiqui@outlook.com>",
+  "dependencies": {
+    "express": "4.17.1",
+    "nyc": "14.1.1",
+    "prettier": "1.18.2",
+    "tslint": "5.18.0",
+    "tslint-clean-code": "0.2.9",
+    "tslint-config-prettier": "1.18.0",
+    "tsoa": "2.4.3",
+    "typescript": "3.5.3"
+  }
+}

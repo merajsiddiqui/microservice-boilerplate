@@ -1,0 +1,31 @@
+import * as ts from 'typescript';
+import { MetadataGenerator } from './metadataGenerator';
+import { Tsoa } from './tsoa';
+export declare class TypeResolver {
+    private readonly typeNode;
+    private readonly current;
+    private readonly parentNode?;
+    private readonly extractEnum;
+    constructor(typeNode: ts.TypeNode, current: MetadataGenerator, parentNode?: ts.Node | undefined, extractEnum?: boolean);
+    resolve(): Tsoa.Type;
+    private getPrimitiveType;
+    private getDateType;
+    private getEnumerateType;
+    private getLiteralType;
+    private getReferenceType;
+    private resolveFqTypeName;
+    private getTypeName;
+    private getAnyTypeName;
+    private createCircularDependencyResolver;
+    private nodeIsUsable;
+    private resolveLeftmostIdentifier;
+    private resolveModelTypeScope;
+    private getModelTypeDeclaration;
+    private getModelProperties;
+    private getModelAdditionalProperties;
+    private getModelInheritedProperties;
+    private hasPublicModifier;
+    private getNodeDescription;
+    private getNodeFormat;
+    private getNodeExample;
+}
