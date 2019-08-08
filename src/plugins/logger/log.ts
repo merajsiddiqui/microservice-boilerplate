@@ -1,5 +1,3 @@
-class Log {
+class Log {}
 
-}
-
-export {Log}
+export { Log }

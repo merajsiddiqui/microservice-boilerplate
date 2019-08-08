@@ -10,8 +10,8 @@ import { dirname } from "path"
 const configurationFilePath = dirname(__dirname) + "/config/app.conf"
 let config: any
 const microServiceLoader = async () => {
-    config = await Config.loadConfigurations(configurationFilePath)
-    Plugins.loadPlugins()
+  config = await Config.loadConfigurations(configurationFilePath)
+  Plugins.loadPlugins()
 }
 microServiceLoader()
 const app = express()
@@ -22,9 +22,9 @@ const app = express()
 // RegisterRoutes(app)
 
 app.get("/", (req, res) => {
-    res.send({
-        data: config
-    })
+  res.send({
+    data: config
+  })
 })
 
 app.listen(3000)
