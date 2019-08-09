@@ -74,7 +74,7 @@
       "no-parameter-properties": false,
       "no-reference": true,
       "no-reference-import": true,
-      "no-require-imports": true,
+      "no-require-imports": false,
       "no-shadowed-variable": [
         true,
         {
@@ -102,7 +102,7 @@
       "no-unused-expression": true,
       "no-use-before-declare": false,
       "no-var-keyword": true,
-      "no-var-requires": true,
+      "no-var-requires": false,
       "no-void-expression": false,
       "object-literal-key-quotes": [true, "as-needed"],
       "object-literal-shorthand": false,
@@ -123,7 +123,7 @@
       "ordered-imports": [false],
       "prefer-const": true,
       "prefer-for-of": false,
-      "prefer-function-over-method": true,
+      "prefer-function-over-method": false,
       "prefer-method-signature": true,
       "prefer-template": false,
       "strict-type-predicates": false,

@@ -4,6 +4,7 @@
   "description": "Simple microservice boiler plate with Node.JS & Typescript",
   "main": "./dist/main.js",
   "scripts": {
+    "generate": "yarn tsoa swagger -c tsoa.json",
     "clean": "rimraf dist/",
     "ts-node": "ts-node",
     "tslint": "tslint --project ./",
@@ -40,15 +41,17 @@
     "tabWidth": 2,
     "semi": false
   },
-  "license": "UNLICENSED",
+  "license": "ISC",
   "author": "Meraj Ahmad Siddiqui <merajsiddiqui@outlook.com>",
   "dependencies": {
     "@types/node": "^12.7.1",
     "ascii-art": "^1.5.1",
-    "express": "4.17.1",
+    "canvas": "^2.5.0",
+    "express": "^4.17.1",
     "ip": "^1.1.5",
     "nyc": "14.1.1",
     "prettier": "1.18.2",
+    "swagger-ui-express": "^4.0.7",
     "tslint": "5.18.0",
     "tslint-clean-code": "0.2.9",
     "tslint-config-prettier": "1.18.0",

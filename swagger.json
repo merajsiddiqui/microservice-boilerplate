@@ -1,0 +1,21 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {},
+	"info": {
+		"title": "microservice-boilerplate",
+		"version": "1.0.0",
+		"description": "Simple microservice boiler plate with Node.JS & Typescript",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}
