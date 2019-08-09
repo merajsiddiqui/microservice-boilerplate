@@ -21,8 +21,8 @@ const microServiceLoader = async () => {
   app.listen(config.app.port, () => {
     console.log(
       ` Service Started at
-      127.0.0.1:${config.app.port}
-      in ${config.app.environment} mode`
+      \ http://127.0.0.1:${config.app.port}
+      \ in ${config.app.environment} mode`
     )
   })
 }

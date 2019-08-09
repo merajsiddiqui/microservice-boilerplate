@@ -31,5 +31,5 @@ git push -u origin master
 
 ### Installing packages
 ```
-yarn add package.json
+yarn install
 ```
