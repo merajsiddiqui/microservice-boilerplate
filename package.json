@@ -4,7 +4,7 @@
   "description": "Simple microservice boiler plate with Node.JS & Typescript",
   "main": "./dist/main.js",
   "scripts": {
-    "generate": "yarn tsoa swagger -c tsoa.json",
+    "generate": "yarn tsoa swagger -c tsoa.json && yarn tsoa swagger -c tsoa.json",
     "clean": "rimraf dist/",
     "ts-node": "ts-node",
     "tslint": "tslint --project ./",
