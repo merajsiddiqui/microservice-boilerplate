@@ -7,24 +7,15 @@ import {
   Header,
   Path,
   SuccessResponse,
-  Controller
+  Controller as Router
 } from "tsoa"
-import { User, UserCreationRequest } from "../models/user"
-
-@Route("Users")
-export class UsersController extends Controller {
-  @Get("{id}")
-  public async getUser(id: number, @Query() name: string): Promise<User> {
-    const user: User = {
-      id: 1,
-      email: "msiddiqui.jmi@gmail.com",
-      name: {
-        first: "Meraj Ahmad",
-        last: "Siddiqui"
-      },
-      phoneNumbers: ["9990166950"]
-    }
-    return user
+import { User, UserCreationRequest } from "../components/user"
+import { UserController } from "../controllers/user"
+@Route("/users")
+export class UsersRouter extends Router {
+  @Get("/{id}")
+  public async getUser(@Path("id") id: number): Promise<User> {
+    return new UserController().getUser(id)
   }
 
   @SuccessResponse("201", "Created") // Custom success response
@@ -36,20 +27,4 @@ export class UsersController extends Controller {
     return Promise.resolve()
   }
 
-  @Get("{id}")
-  public async getPrivateUser(
-    @Path("id") ID: number,
-    @Header("Authorization") authorization: string
-  ): Promise<User> {
-    const user: User = {
-      id: 1,
-      email: "msiddiqui.jmi@gmail.com",
-      name: {
-        first: "Meraj Ahmad",
-        last: "Siddiqui"
-      },
-      phoneNumbers: ["9990166950"]
-    }
-    return user
-  }
 }

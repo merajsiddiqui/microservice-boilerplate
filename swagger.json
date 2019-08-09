@@ -86,9 +86,9 @@
 		}
 	},
 	"paths": {
-		"/Users/{id}": {
+		"/users/{id}": {
 			"get": {
-				"operationId": "GetPrivateUser",
+				"operationId": "GetUser",
 				"produces": [
 					"application/json"
 				],
@@ -108,17 +108,11 @@
 						"required": true,
 						"format": "double",
 						"type": "number"
-					},
-					{
-						"in": "header",
-						"name": "Authorization",
-						"required": true,
-						"type": "string"
 					}
 				]
 			}
 		},
-		"/Users": {
+		"/users": {
 			"post": {
 				"operationId": "CreateUser",
 				"produces": [

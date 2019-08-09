@@ -1,10 +1,20 @@
-namespace UserComponent {
-  export interface IUser {
-    firstName: string
-    lastName: string
-    emailId: string
-    age: number
-  }
+export interface User {
+  id: number
+  email: string
+  name: Name
+  status?: status
+  phoneNumbers: string[]
 }
 
-export { UserComponent }
+export type status = "Happy" | "Sad"
+
+export interface Name {
+  first: string
+  last?: string
+}
+
+export interface UserCreationRequest {
+  email: string
+  name: Name
+  phoneNumbers: string[]
+}
