@@ -1,3 +1,17 @@
 node_modules/
 yarn.lock
 logs/*.log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage
+.nyc_output
+typings/
+.npm
+.eslintcache
+.yarn-integrity
+.env
+.DS_Store
+.vscode
+dist/
