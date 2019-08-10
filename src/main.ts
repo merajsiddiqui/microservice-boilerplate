@@ -3,7 +3,6 @@ import * as http from "http"
 import { Plugins } from "./plugins"
 import { Config } from "./config"
 import { dirname } from "path"
-import * as art from "ascii-art"
 import * as fs from "fs"
 import * as IP from "ip"
 
@@ -27,20 +26,5 @@ Plugins.loadPlugins()
 const server = http.createServer(app)
 server.listen(config.app.port)
 server.on("listening", async () => {
-  await art.font("Micro Service", "Doom", rendered => {
-    console.log(rendered)
-    art.table(
-      {
-        width: 300,
-        data: AppConfiguration,
-        bars: "double",
-        headerStyle: "yellow",
-        dataStyle: "bright_white",
-        borderColor: "gray"
-      },
-      render => {
-        console.log(render)
-      }
-    )
-  })
+  console.log(AppConfiguration)
 })
