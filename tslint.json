@@ -184,7 +184,7 @@
     },
   
     "linterOptions": {
-      "exclude": ["./dist", "*.js", "./node_modules"]
+      "exclude": ["./dist", "*.js", "./node_modules", "src/tsoa-template.ts"]
     }
   }
   

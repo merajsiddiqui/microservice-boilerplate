@@ -6,7 +6,9 @@
     "routes" : {
         "basePath" : "/",
         "entryFile": "./src/app.ts",
-        "routesDir": "./src/routes/",
-        "middleware": "express"
-    }
+        "routesDir": "./src/routes/"
+    },
+    "ignore": [
+        "**/node_modules/**"
+      ]
 }
