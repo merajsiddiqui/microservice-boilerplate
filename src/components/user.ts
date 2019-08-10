@@ -1,5 +1,5 @@
-export interface User {
-  id: number
+export interface getUserResponseSuccess {
+  id: string
   email: string
   name: Name
   status?: status
@@ -13,8 +13,17 @@ export interface Name {
   last?: string
 }
 
-export interface UserCreationRequest {
+export interface createUserRequest {
   email: string
   name: Name
   phoneNumbers: string[]
+}
+
+export interface defaultResponseError {
+  error: string
+}
+
+export interface createUserResponseSuccess {
+  sucecess: boolean
+  data: createUserRequest
 }

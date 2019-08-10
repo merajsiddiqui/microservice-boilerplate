@@ -1,5 +1,5 @@
-import { User } from "../components/user";
+import * as User from "../components/user";
 declare class UserController {
-    getUser: (id: number) => User;
+    getUser: (id: string) => User.getUserResponseSuccess;
 }
 export { UserController };

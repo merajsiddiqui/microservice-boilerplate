@@ -19,11 +19,10 @@
 			],
 			"type": "object"
 		},
-		"User": {
+		"getUserResponseSuccess": {
 			"properties": {
 				"id": {
-					"type": "number",
-					"format": "double"
+					"type": "string"
 				},
 				"email": {
 					"type": "string"
@@ -54,7 +53,22 @@
 			],
 			"type": "object"
 		},
-		"UserCreationRequest": {
+		"ErrorResponse": {
+			"properties": {
+				"code": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"code",
+				"message"
+			],
+			"type": "object"
+		},
+		"createUserRequest": {
 			"properties": {
 				"email": {
 					"type": "string"
@@ -73,6 +87,21 @@
 				"email",
 				"name",
 				"phoneNumbers"
+			],
+			"type": "object"
+		},
+		"createUserResponseSuccess": {
+			"properties": {
+				"sucecess": {
+					"type": "boolean"
+				},
+				"data": {
+					"$ref": "#/definitions/createUserRequest"
+				}
+			},
+			"required": [
+				"sucecess",
+				"data"
 			],
 			"type": "object"
 		}
@@ -96,18 +125,32 @@
 					"200": {
 						"description": "Ok",
 						"schema": {
-							"$ref": "#/definitions/User"
+							"$ref": "#/definitions/getUserResponseSuccess"
+						}
+					},
+					"401": {
+						"description": "Not Authorized",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
 						}
 					}
 				},
 				"security": [],
 				"parameters": [
 					{
+						"description": "Unique user id which is an uuid",
 						"in": "path",
 						"name": "id",
 						"required": true,
-						"format": "double",
-						"type": "number"
+						"type": "string",
+						"minLength": 24,
+						"maxLength": 30
 					}
 				]
 			}
@@ -120,7 +163,10 @@
 				],
 				"responses": {
 					"201": {
-						"description": "Created"
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/createUserResponseSuccess"
+						}
 					}
 				},
 				"security": [],
@@ -130,7 +176,7 @@
 						"name": "requestBody",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/UserCreationRequest"
+							"$ref": "#/definitions/createUserRequest"
 						}
 					}
 				]

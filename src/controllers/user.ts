@@ -1,8 +1,8 @@
-import { User } from "../components/user"
+import * as User from "../components/user"
 
 class UserController {
-  public getUser = (id: number): User => {
-    const newUser: User = {
+  public getUser = (id: string): User.getUserResponseSuccess => {
+    const newUser: User.getUserResponseSuccess = {
       id: id,
       name: {
         first: "Meraj Ahmad",
