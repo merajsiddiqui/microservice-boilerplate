@@ -26,5 +26,4 @@ export class UsersRouter extends Router {
     this.setStatus(201) // set return status 201
     return Promise.resolve()
   }
-
 }
