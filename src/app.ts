@@ -10,10 +10,14 @@ import "./routes/user"
 /** End of Routes */
 const app = express()
 app.use(bodyparser.json())
-app.use((req: any, res: any, next: any) => {
-  req.stringValue = "fancyStringForContext"
-  next()
-})
+
+console.log("Going to render routes")
+try {
+  RegisterRoutes(app)
+} catch (e) {
+  console.log(e)
+}
+
 try {
   const swaggerDocument = require("../swagger.json")
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
@@ -21,7 +25,6 @@ try {
 } catch (err) {
   console.error("Unable to read swagger.json", err)
 }
-RegisterRoutes(app)
 
 // It's important that this come after the main routes are registered
 app.use(

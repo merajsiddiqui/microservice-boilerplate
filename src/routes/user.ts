@@ -3,9 +3,6 @@ import {
   Post,
   Route,
   Body,
-  Query,
-  Header,
-  Tags,
   Path,
   SuccessResponse,
   Controller as Router,
@@ -18,7 +15,7 @@ import {
 } from "../components/user"
 import { UserController } from "../controllers/user"
 import { ErrorResponse } from "../components/response"
-@Route("/users")
+@Route("users")
 export class UsersRouter extends Router {
   /**
    * @param id Unique user id which is an uuid
@@ -27,7 +24,7 @@ export class UsersRouter extends Router {
    */
   @Response<ErrorResponse>(404, "Not Found")
   @Response<ErrorResponse>(401, "Not Authorized")
-  @Get("/{id}")
+  @Get("{id}")
   public async getUser(
     @Path("id") id: string
   ): Promise<getUserResponseSuccess> {
