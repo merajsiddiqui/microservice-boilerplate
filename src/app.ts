@@ -1,6 +1,6 @@
 import * as express from "express"
 import * as bodyparser from "body-parser"
-
+import { dirname } from "path"
 import { RegisterRoutes } from "./routes/routes"
 import * as swaggerUi from "swagger-ui-express"
 
@@ -17,6 +17,7 @@ app.use((req: any, res: any, next: any) => {
 try {
   const swaggerDocument = require("../swagger.json")
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+  app.use("/coverage", express.static( dirname(__dirname)  + "/coverage"))
 } catch (err) {
   console.error("Unable to read swagger.json", err)
 }
