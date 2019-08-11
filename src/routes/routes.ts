@@ -6,12 +6,143 @@ import {
   ValidateError,
   TsoaRoute
 } from "tsoa"
+import { UsersRouter } from "./user"
 import * as express from "express"
 
-const models: TsoaRoute.Models = {}
+const models: TsoaRoute.Models = {
+  Name: {
+    properties: {
+      first: { dataType: "string", required: true },
+      last: { dataType: "string" }
+    }
+  },
+  getUserResponseSuccess: {
+    properties: {
+      id: { dataType: "string", required: true },
+      email: { dataType: "string", required: true },
+      name: { ref: "Name", required: true },
+      status: { dataType: "enum", enums: ["Happy", "Sad"] },
+      phoneNumbers: {
+        dataType: "array",
+        array: { dataType: "string" },
+        required: true
+      }
+    }
+  },
+  ErrorResponse: {
+    properties: {
+      code: { dataType: "string", required: true },
+      message: { dataType: "string", required: true }
+    }
+  },
+  createUserRequest: {
+    properties: {
+      email: { dataType: "string", required: true },
+      name: { ref: "Name", required: true },
+      phoneNumbers: {
+        dataType: "array",
+        array: { dataType: "string" },
+        required: true
+      }
+    }
+  },
+  createUserResponseSuccess: {
+    properties: {
+      sucecess: { dataType: "boolean", required: true },
+      data: { ref: "createUserRequest", required: true }
+    }
+  },
+  updateUserRequestBody: {
+    properties: {
+      id: { dataType: "string", required: true },
+      email: { dataType: "string", required: true }
+    }
+  },
+  updateUserResponse: {
+    properties: {
+      success: { dataType: "boolean", required: true },
+      data: { ref: "updateUserRequestBody", required: true },
+      userId: { dataType: "double", required: true }
+    }
+  }
+}
 const validationService = new ValidationService(models)
 
 export function RegisterRoutes(app: express.Express) {
+  app.get("/users/:id", function(request: any, response: any, next: any) {
+    const args = {
+      id: {
+        in: "path",
+        name: "id",
+        required: true,
+        dataType: "string",
+        validators: { minLength: { value: 24 }, maxLength: { value: 30 } }
+      }
+    }
+
+    let validatedArgs: any[] = []
+    try {
+      validatedArgs = getValidatedArgs(args, request)
+    } catch (err) {
+      return next(err)
+    }
+
+    const controller = new UsersRouter()
+
+    const promise = controller.getUser.apply(controller, validatedArgs as any)
+    promiseHandler(controller, promise, response, next)
+  })
+  app.post("/users", function(request: any, response: any, next: any) {
+    const args = {
+      requestBody: {
+        in: "body",
+        name: "requestBody",
+        required: true,
+        ref: "createUserRequest"
+      }
+    }
+
+    let validatedArgs: any[] = []
+    try {
+      validatedArgs = getValidatedArgs(args, request)
+    } catch (err) {
+      return next(err)
+    }
+
+    const controller = new UsersRouter()
+
+    const promise = controller.createUser.apply(
+      controller,
+      validatedArgs as any
+    )
+    promiseHandler(controller, promise, response, next)
+  })
+  app.put("/users/update", function(request: any, response: any, next: any) {
+    const args = {
+      data: {
+        in: "body",
+        name: "data",
+        required: true,
+        ref: "updateUserRequestBody"
+      }
+    }
+
+    let validatedArgs: any[] = []
+    try {
+      validatedArgs = getValidatedArgs(args, request)
+    } catch (err) {
+      return next(err)
+    }
+
+    const controller = new UsersRouter()
+
+    const promise = controller.updateUser.apply(
+      controller,
+      validatedArgs as any
+    )
+    promiseHandler(controller, promise, response, next)
+  })
+
   function isController(object: any): object is Controller {
     return (
       "getHeaders" in object && "getStatus" in object && "setStatus" in object

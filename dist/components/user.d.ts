@@ -22,3 +22,12 @@ export interface createUserResponseSuccess {
     sucecess: boolean;
     data: createUserRequest;
 }
+export interface updateUserRequestBody {
+    id: string;
+    email: string;
+}
+export interface updateUserResponse {
+    success: boolean;
+    data: updateUserRequestBody;
+    userId: number;
+}

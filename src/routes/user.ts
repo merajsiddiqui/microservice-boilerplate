@@ -6,12 +6,15 @@ import {
   Path,
   SuccessResponse,
   Controller as Router,
-  Response
+  Response,
+  Put
 } from "tsoa"
 import {
   getUserResponseSuccess,
   createUserRequest,
-  createUserResponseSuccess
+  createUserResponseSuccess,
+  updateUserRequestBody,
+  updateUserResponse
 } from "../components/user"
 import { UserController } from "../controllers/user"
 import { ErrorResponse } from "../components/response"
@@ -38,5 +41,14 @@ export class UsersRouter extends Router {
   ): Promise<createUserResponseSuccess> {
     this.setStatus(201) // set return status 201
     return Promise.resolve(<createUserResponseSuccess>{})
+  }
+
+  @Put("update")
+  @Response<ErrorResponse>(204, "some invalid data")
+  public async updateUser(
+    @Body() data: updateUserRequestBody
+  ): Promise<updateUserResponse> {
+    this.setStatus(204)
+    return <updateUserResponse>{}
   }
 }

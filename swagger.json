@@ -104,6 +104,41 @@
 				"data"
 			],
 			"type": "object"
+		},
+		"updateUserRequestBody": {
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"email"
+			],
+			"type": "object"
+		},
+		"updateUserResponse": {
+			"properties": {
+				"success": {
+					"type": "boolean"
+				},
+				"data": {
+					"$ref": "#/definitions/updateUserRequestBody"
+				},
+				"userId": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"required": [
+				"success",
+				"data",
+				"userId"
+			],
+			"type": "object"
 		}
 	},
 	"info": {
@@ -177,6 +212,39 @@
 						"required": true,
 						"schema": {
 							"$ref": "#/definitions/createUserRequest"
+						}
+					}
+				]
+			}
+		},
+		"/users/update": {
+			"put": {
+				"operationId": "UpdateUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/updateUserResponse"
+						}
+					},
+					"204": {
+						"description": "some invalid data",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "data",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/updateUserRequestBody"
 						}
 					}
 				]

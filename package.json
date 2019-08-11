@@ -4,7 +4,6 @@
   "description": "Simple microservice boiler plate with Node.JS & Typescript",
   "main": "./dist/main.js",
   "scripts": {
-    "generate": "yarn tsoa swagger -c tsoa.json && yarn tsoa swagger -c tsoa.json",
     "clean": "rimraf dist/",
     "ts-node": "ts-node",
     "tslint": "tslint --project ./",
@@ -14,6 +13,7 @@
     "compile": "npm run tsc",
     "pretest": "npm run compile",
     "test": "nyc mocha --require source-map-support/register --recursive dist/**/*.spec.js",
+    "prebuild": "yarn tsoa swagger -c tsoa.json && yarn tsoa routes -c tsoa.json",
     "build": "npm run test",
     "postbuild": "rimraf  dist/**/spec dist/**/*.spec.js",
     "debug": "cross-var node --inspect-brk=0.0.0.0:${DEBUG_PORT} --require source-map-support/register ./dist/main.js",
